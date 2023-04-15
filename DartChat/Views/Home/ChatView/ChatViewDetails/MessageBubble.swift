@@ -34,35 +34,37 @@ struct MessageBubble: View {
     }
     
     var body: some View {
-        if username == message.sender {
-            Spacer()
-        }
-        
-        Text(message.text ?? "Error: Message text was nil.")
-            .padding(12)
-            .foregroundColor(.white)
-            .background(
-                username == message.sender ? Asset.dimOrangeLight.swiftUIColor : Asset.greyDark.swiftUIColor
-            )
-            .clipShape(Bubble(chat: username == message.sender))
-            .padding(.leading)
+        VStack(alignment: username == message.sender ? .trailing : .leading) {
+            HStack {
+                if username == message.sender {
+                    Spacer()
+                }
+                
+                Text(message.text ?? "Error: Message text was nil.")
+                    .padding(12)
+                    .foregroundColor(.white)
+                    .background(
+                        username == message.sender ? Asset.dimOrangeLight.swiftUIColor : Asset.greyDark.swiftUIColor
+                    )
+                    .clipShape(Bubble(chat: username == message.sender))
+                    .padding(.leading)
+                    
+                if username != message.sender {
+                    Spacer()
+                }
             
-        if username != message.sender {
+                if username == message.sender {
+                    MessageStatusChatIcon(status: .init(rawValue: message.status) ?? .unknown)
+                        .foregroundColor(.accentColor)
+                        .padding(.trailing)
+                }
+            }
+            
             if let messageDate = message.date {
                 Text("\(dateFormatter.string(from: messageDate))")
                     .font(.footnote)
                     .foregroundColor(.gray)
             }
-        }
-        
-        if username != message.sender {
-            Spacer()
-        }
-    
-        if username == message.sender {
-            MessageStatusChatIcon(status: .init(rawValue: message.status) ?? .unknown)
-                .foregroundColor(.accentColor)
-                .padding(.trailing)
         }
     }
 }
