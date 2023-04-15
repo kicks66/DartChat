@@ -70,6 +70,7 @@
       "size" : "20x20"
     },
     {
+      "filename" : "Icon-76@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
@@ -80,6 +81,7 @@
       "size" : "29x29"
     },
     {
+      "filename" : "256x256 2.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
@@ -90,6 +92,7 @@
       "size" : "40x40"
     },
     {
+      "filename" : "256x256 3.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
@@ -100,11 +103,13 @@
       "size" : "76x76"
     },
     {
+      "filename" : "3-blac (1) 1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "3-blac (1).png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
