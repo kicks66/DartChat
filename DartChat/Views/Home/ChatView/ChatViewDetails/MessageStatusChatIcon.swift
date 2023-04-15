@@ -14,11 +14,13 @@ struct MessageStatusChatIcon: View {
     var body: some View {
         switch status {
         case .sent:
-            Image(systemName: "arrow.up.arrow.down.circle")
+            Image(systemName: "checkmark")
+                .foregroundColor(.gray)
         case .delivered:
-            Image(systemName: "arrow.up.arrow.down.circle.fill")
+            Image(systemName: "checkmark.rectangle")
+                .foregroundColor(.gray)
         case .read:
-            Image(systemName: "eye.circle.fill")
+            Image(systemName: "checkmark.rectangle.fill")
         case .failed:
             Image(systemName: "wifi.slash")
         default:
