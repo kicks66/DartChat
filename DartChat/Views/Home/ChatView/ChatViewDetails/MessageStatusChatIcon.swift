@@ -12,19 +12,27 @@ struct MessageStatusChatIcon: View {
     let status: MessageStatus
     
     var body: some View {
-        switch status {
-        case .sent:
-            Image(systemName: "checkmark")
-                .foregroundColor(.gray)
-        case .delivered:
-            Image(systemName: "checkmark.rectangle")
-                .foregroundColor(.gray)
-        case .read:
-            Image(systemName: "checkmark.rectangle.fill")
-        case .failed:
-            Image(systemName: "wifi.slash")
-        default:
-            Image(systemName: "exclamationmark.bubble.fill")
+            switch status {
+            case .sent:
+                Image("single-grey")
+                    .resizable()
+                    .frame(width: 9, height: 9)
+            case .delivered:
+                Image("double-grey")
+                    .resizable()
+                    .frame(width: 16, height: 9)
+            case .read:
+                Image("double-yellow")
+                    .resizable()
+                    .frame(width: 16, height: 9)
+            case .failed:
+                Image(systemName: "wifi.slash")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+            default:
+                Image(systemName: "exclamationmark.bubble.fill")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+            }
         }
-    }
 }
