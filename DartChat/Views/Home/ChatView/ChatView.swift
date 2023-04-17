@@ -7,6 +7,7 @@
 import MobileCoreServices
 import Foundation
 import SwiftUI
+import Amplitude
 
 
 /// The `ChatView` displays a conversation and all the messages that have been sent and
@@ -163,6 +164,7 @@ struct ChatView: View {
             self.message = ""
             Task {
                 await appSession.send(text: message, conversation: conversation)
+                Amplitude.instance().logEvent("Message Sent")
             }
         }
     }

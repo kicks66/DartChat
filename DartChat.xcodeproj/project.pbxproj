@@ -44,6 +44,7 @@
 		B0B183DE29A0925A005CA662 /* Extensions+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B183DD29A0925A005CA662 /* Extensions+View.swift */; };
 		B0B86E262995137C00CCC465 /* Extensions+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B86E252995137C00CCC465 /* Extensions+HideKeyboard.swift */; };
 		B0C6896926E5410D004937D5 /* LocalMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6896826E5410D004937D5 /* LocalMessageModel.swift */; };
+		EDAC03F029ED76FC0056F7D8 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = EDAC03EF29ED76FC0056F7D8 /* Amplitude */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDAC03F029ED76FC0056F7D8 /* Amplitude in Frameworks */,
 				B0A185E029DD83E00057E9E4 /* DataController in Frameworks */,
 				B09FAD1D2789EFFA0030B777 /* CodeScanner in Frameworks */,
 			);
@@ -309,6 +311,7 @@
 			packageProductDependencies = (
 				B09FAD1C2789EFFA0030B777 /* CodeScanner */,
 				B0A185DF29DD83E00057E9E4 /* DataController */,
+				EDAC03EF29ED76FC0056F7D8 /* Amplitude */,
 			);
 			productName = bluetoothChat;
 			productReference = B05E1F3226D3B3A800AD9E65 /* DartChat.app */;
@@ -339,6 +342,7 @@
 			mainGroup = B05E1F2926D3B3A800AD9E65;
 			packageReferences = (
 				B09FAD1B2789EFFA0030B777 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				EDAC03EE29ED76FC0056F7D8 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = B05E1F3326D3B3A800AD9E65 /* Products */;
 			projectDirPath = "";
@@ -624,6 +628,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		EDAC03EE29ED76FC0056F7D8 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -635,6 +647,11 @@
 		B0A185DF29DD83E00057E9E4 /* DataController */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DataController;
+		};
+		EDAC03EF29ED76FC0056F7D8 /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDAC03EE29ED76FC0056F7D8 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "amplitude-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/Amplitude-iOS",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1db7f83eb58e97abd6685c28dd1a46af4e70a0ff"
+      }
+    },
+    {
+      "identity" : "analytics-connector-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/amplitude/analytics-connector-ios.git",
+      "state" : {
+        "revision" : "d3d682a26ca6f4947ece2c2e627971bb41b940fa",
+        "version" : "1.0.1"
+      }
+    },
+    {
       "identity" : "codescanner",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/CodeScanner",
