@@ -44,7 +44,11 @@
 		B0B183DE29A0925A005CA662 /* Extensions+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B183DD29A0925A005CA662 /* Extensions+View.swift */; };
 		B0B86E262995137C00CCC465 /* Extensions+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B86E252995137C00CCC465 /* Extensions+HideKeyboard.swift */; };
 		B0C6896926E5410D004937D5 /* LocalMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6896826E5410D004937D5 /* LocalMessageModel.swift */; };
+		ED98B8932A41CE6800005326 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED98B8922A41CE6800005326 /* GoogleService-Info.plist */; };
+		ED98B8962A41CF4600005326 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = ED98B8952A41CF4600005326 /* FirebaseMessaging */; };
 		EDAC03F029ED76FC0056F7D8 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = EDAC03EF29ED76FC0056F7D8 /* Amplitude */; };
+		EDD868A32A42E2DD00187D01 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD868A22A42E2DD00187D01 /* ShareSheet.swift */; };
+		EDEDEEE62A41E10900100056 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = EDEDEEE52A41E10900100056 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +91,8 @@
 		B0B86E252995137C00CCC465 /* Extensions+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+HideKeyboard.swift"; sourceTree = "<group>"; };
 		B0C6896826E5410D004937D5 /* LocalMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMessageModel.swift; sourceTree = "<group>"; };
 		B0F199D128EF6C5B00F11157 /* DartChat.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = DartChat.entitlements; sourceTree = "<group>"; };
+		ED98B8922A41CE6800005326 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EDD868A22A42E2DD00187D01 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED98B8962A41CF4600005326 /* FirebaseMessaging in Frameworks */,
+				EDEDEEE62A41E10900100056 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				EDAC03F029ED76FC0056F7D8 /* Amplitude in Frameworks */,
 				B0A185E029DD83E00057E9E4 /* DataController in Frameworks */,
 				B09FAD1D2789EFFA0030B777 /* CodeScanner in Frameworks */,
@@ -140,6 +148,7 @@
 		B05E1F3426D3B3A800AD9E65 /* DartChat */ = {
 			isa = PBXGroup;
 			children = (
+				ED98B8922A41CE6800005326 /* GoogleService-Info.plist */,
 				B0A185DD29DD83B90057E9E4 /* DataController */,
 				B080269F28EDA83B00CBE455 /* Documentation.docc */,
 				B0F199D128EF6C5B00F11157 /* DartChat.entitlements */,
@@ -288,6 +297,7 @@
 				B0357C0A26DBEB950013CAF9 /* QRView.swift */,
 				B0B0D06826FCFD2E00E2512B /* ChatView */,
 				B0225B09271B2AF5005D8098 /* SettingsView */,
+				EDD868A22A42E2DD00187D01 /* ShareSheet.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -312,6 +322,8 @@
 				B09FAD1C2789EFFA0030B777 /* CodeScanner */,
 				B0A185DF29DD83E00057E9E4 /* DataController */,
 				EDAC03EF29ED76FC0056F7D8 /* Amplitude */,
+				ED98B8952A41CF4600005326 /* FirebaseMessaging */,
+				EDEDEEE52A41E10900100056 /* FirebaseAnalyticsWithoutAdIdSupport */,
 			);
 			productName = bluetoothChat;
 			productReference = B05E1F3226D3B3A800AD9E65 /* DartChat.app */;
@@ -343,6 +355,7 @@
 			packageReferences = (
 				B09FAD1B2789EFFA0030B777 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				EDAC03EE29ED76FC0056F7D8 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				ED98B8942A41CF4600005326 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B05E1F3326D3B3A800AD9E65 /* Products */;
 			projectDirPath = "";
@@ -359,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B05E1F4226D3B3AB00AD9E65 /* LaunchScreen.storyboard in Resources */,
+				ED98B8932A41CE6800005326 /* GoogleService-Info.plist in Resources */,
 				B05E1F3F26D3B3AB00AD9E65 /* Preview Assets.xcassets in Resources */,
 				B05E1F3C26D3B3AB00AD9E65 /* Assets.xcassets in Resources */,
 			);
@@ -381,6 +395,7 @@
 				B027E2F92996341A001D5F18 /* UserDefaultsKeys.swift in Sources */,
 				B0202E4E26FB7FC60061DE8D /* DataModel.xcdatamodeld in Sources */,
 				B070BAEE2722E0740036091A /* MessageBubble.swift in Sources */,
+				EDD868A32A42E2DD00187D01 /* ShareSheet.swift in Sources */,
 				B05E1F3826D3B3A800AD9E65 /* SceneDelegate.swift in Sources */,
 				B05E1F3A26D3B3A800AD9E65 /* HomeView.swift in Sources */,
 				B0ABA9062702F3D1005C83DC /* MessageStatusModel.swift in Sources */,
@@ -545,7 +560,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DartChat/DartChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"DartChat/Preview Content\"";
 				DEVELOPMENT_TEAM = SP72KC55U6;
 				ENABLE_PREVIEWS = YES;
@@ -557,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3;
+				MARKETING_VERSION = 3.21;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ndart.dartchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -576,7 +591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DartChat/DartChat.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"DartChat/Preview Content\"";
 				DEVELOPMENT_TEAM = SP72KC55U6;
 				ENABLE_PREVIEWS = YES;
@@ -588,7 +603,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3;
+				MARKETING_VERSION = 3.21;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ndart.dartchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -632,6 +647,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		ED98B8942A41CF4600005326 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		EDAC03EE29ED76FC0056F7D8 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
@@ -652,10 +675,20 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = DataController;
 		};
+		ED98B8952A41CF4600005326 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED98B8942A41CF4600005326 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		EDAC03EF29ED76FC0056F7D8 /* Amplitude */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EDAC03EE29ED76FC0056F7D8 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
 			productName = Amplitude;
+		};
+		EDEDEEE52A41E10900100056 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED98B8942A41CF4600005326 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 /* End XCSwiftPackageProductDependency section */
 

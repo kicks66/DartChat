@@ -16,6 +16,12 @@
         <attribute name="text" attributeType="String"/>
         <relationship name="inConversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationEntity" inverseName="messages" inverseEntity="ConversationEntity"/>
     </entity>
+    <entity name="StoredMessageEntity" representedClassName="StoredMessageEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="messageData" optional="YES" attributeType="Binary"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="attemptCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="ConversationEntity" positionX="-306.1605224609375" positionY="45.73828125" width="128" height="118"/>
         <element name="MessageEntity" positionX="-67.5987548828125" positionY="84.41009521484375" width="128" height="134"/>

@@ -83,7 +83,9 @@ struct HomeView: View {
                 }
             } else {
                 Text("Add some friends using the QR code scanner in the top right.")
+                    .fontWeight(.bold)
                     .multilineTextAlignment(.center)
+                    .font(.system(size: 24))
             }
         }
         .toolbar {
@@ -97,7 +99,7 @@ struct HomeView: View {
                                 .imageScale(.small)
                                 .symbolRenderingMode(.palette)
                                 .foregroundStyle(.red, .orange, .white)
-                            Text("Not connected")
+                            Text("No users in range")
                                 .foregroundColor(.accentColor)
                                 .font(.subheadline)
                         }

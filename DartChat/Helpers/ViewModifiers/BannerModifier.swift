@@ -75,7 +75,7 @@ struct BannerModifier: ViewModifier {
                     switch data.kind {
                     case .error: ()
                     default:
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             withAnimation(.spring()) {
                                 shouldShow = false
                             }

@@ -17,6 +17,8 @@ struct QRView: View {
     /// different visuals depending on the colorscheme.
     @Environment(\.colorScheme) var colorScheme
     
+    @State private var shareSheetShown = false
+    
     @EnvironmentObject var appSession: AppSession
     
     /// The username fetched from `UserDefaults`
@@ -42,8 +44,12 @@ struct QRView: View {
             
             Spacer()
             
-            Text("Scan the QR code")
+            Text(String(username.split(separator: "#")[0]))
                 .font(.title)
+                .padding()
+            
+            Text("Scan the QR code")
+                .font(.subheadline)
                 .padding()
             
             ZStack {
@@ -61,6 +67,25 @@ struct QRView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 200, alignment: .center)
+            }
+            
+            Spacer()
+            
+            Button(action: {
+                self.shareSheetShown = true
+            }) {
+                HStack {
+                    Spacer()
+                    HStack {
+                        Text("Share my link")
+                            .foregroundColor(.white)
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    Spacer()
+                }
+            }
+            .sheet(isPresented: $shareSheetShown) {
+                ShareSheet(activityItems: ["dim://\(username)//\(CryptoHandler.fetchPublicKeyString())"])
             }
                 
             Spacer(minLength: 150)

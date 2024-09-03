@@ -60,12 +60,15 @@ class AppSession: ObservableObject  {
     var senderOfMessageID: [Int32 : String] = [:]
     
     private var dataController: LiveDataController
+
+    let messageStore: MessageStore
     
     /// The initialiser for the AppSession.
     /// Sets up the `centralManager` and the `peripheralManager`.
     /// - Parameter context: The context for persistent storage to `CoreData`
     init(context: NSManagedObjectContext) {
         self.context = context
+        self.messageStore = MessageStore(context: context)
         self.dataController = LiveDataController(config: .init(usernameWithRandomDigits: ""))
         dataController.delegate = self
         setupBindings()
@@ -98,7 +101,6 @@ class AppSession: ObservableObject  {
     func send(text message: String, conversation: ConversationEntity) async {
         var messageToBeStored: Message
         do {
-            // Encrypt the plan text message before handing it over to the `DataController`
             guard let receipentPublicKey = conversation.publicKey, let receipent = conversation.author else {
                 fatalError("Tried to fetch public key of conversation but it was nil")
             }
@@ -114,21 +116,26 @@ class AppSession: ObservableObject  {
                 text: message, symmetricKey: symmetricKey)
             
             let messageId = Int32.random(in: 0...Int32.max)
-            let sendMessageInformation = SendMessageInformation(id: messageId, encryptedText: encryptedText, receipentWithDigits: receipent)
-            try await dataController.send(message: sendMessageInformation)
-            
             messageToBeStored = Message(
                 id: messageId,
                 kind: .regular,
                 sender: usernameWithDigits,
                 receiver: receipent,
-                text: message)
-        } catch DataControllerError.noConnectedDevices {
-            showBanner(.init(
-                title: "Message in queue",
-                message: "There are currently no connected devices. The message will be delivered later.",
-                kind: .normal))
-            return
+                text: encryptedText)
+            
+            let sendMessageInformation = SendMessageInformation(id: messageId, encryptedText: encryptedText, receipentWithDigits: receipent)
+            
+            if appSession.connectedDevicesAmount > 0 {
+                try await dataController.send(message: sendMessageInformation)
+            } else {
+                // Store the message for later sending
+                let storedMessage = StoredMessage(originalMessage: messageToBeStored)
+                messageStore.storeMessage(storedMessage)
+                showBanner(.init(
+                    title: "Message stored",
+                    message: "No devices currently connected. The message will be sent when possible.",
+                    kind: .normal))
+            }
         } catch {
             showErrorMessage(error.localizedDescription)
             return
@@ -139,12 +146,12 @@ class AppSession: ObservableObject  {
         
         localMessage.receiver = messageToBeStored.receiver
         localMessage.status = MessageStatus.sent.rawValue
-        localMessage.text = messageToBeStored.text
+        localMessage.text = message // Store the unencrypted text
         localMessage.date = Date()
         localMessage.id = messageToBeStored.id
         localMessage.sender = messageToBeStored.sender
         
-        conversation.lastMessage = "You: " + messageToBeStored.text
+        conversation.lastMessage = "You: " + message
         conversation.date = Date()
         conversation.addToMessages(localMessage)
         
@@ -207,6 +214,44 @@ class AppSession: ObservableObject  {
     
     func showErrorMessage(_ error: String) {
         showBanner(.init(title: "Something went wrong", message: error, kind: .error))
+    }
+
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.yourapp.messageresend", using: nil) { task in
+            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+        }
+    }
+
+    func handleAppRefresh(task: BGAppRefreshTask) {
+        scheduleAppRefresh()
+        
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 1
+        
+        queue.addOperation {
+            let appSession = AppSession(context: self.persistentContainer.viewContext)
+            appSession.resendStoredMessages()
+        }
+        
+        task.expirationHandler = {
+            queue.cancelAllOperations()
+        }
+
+        let lastOperation = queue.operations.last
+        lastOperation?.completionBlock = {
+            task.setTaskCompleted(success: !(lastOperation?.isCancelled ?? false))
+        }
+    }
+
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.yourapp.messageresend")
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 60) // 1 minute from now
+        
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print("Could not schedule app refresh: \(error)")
+        }
     }
 }
     

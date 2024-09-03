@@ -65,7 +65,7 @@ struct ChatView: View {
                     LazyVStack {
                         ForEach(messages, id: \.self) { message in
                             HStack {
-                                MessageBubble(username: username, message: message)
+                                MessageBubble(username: username, message: message, isStored: isMessageStored(message))
                             }
                             .padding(EdgeInsets(top: 1, leading: 0, bottom: 1, trailing: 0))
                             .contextMenu {
@@ -167,5 +167,9 @@ struct ChatView: View {
                 Amplitude.instance().logEvent("Message Sent")
             }
         }
+    }
+
+    private func isMessageStored(_ message: MessageEntity) -> Bool {
+        return appSession.messageStore.isMessageStored(withId: message.id)
     }
 }

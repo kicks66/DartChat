@@ -14,6 +14,8 @@ enum MessageStatus: Int32 {
     case read
     case received
     case receivedReadSent
+    case stored
+    case expired
     case unknown
     case failed
 }

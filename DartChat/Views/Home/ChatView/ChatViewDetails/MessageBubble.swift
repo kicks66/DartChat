@@ -18,6 +18,8 @@ struct MessageBubble: View {
     var message: MessageEntity
     
     var dateFormatter: DateFormatter
+
+    var isStored: Bool
     
     /// Initialise a new chat bubble.
     ///
@@ -25,12 +27,13 @@ struct MessageBubble: View {
     /// - Parameters:
     ///   - username: The username of the person who sent the message.
     ///   - message: The actual message which was sent.
-    init(username: String, message: MessageEntity) {
+    init(username: String, message: MessageEntity, isStored: Bool = false) {
         dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         
         self.username = username
         self.message = message
+        self.isStored = isStored
     }
     
     var body: some View {
@@ -54,9 +57,15 @@ struct MessageBubble: View {
                 }
             
                 if username == message.sender {
-                    MessageStatusChatIcon(status: .init(rawValue: message.status) ?? .unknown)
-                        .foregroundColor(.accentColor)
-                        .padding(.trailing)
+                    HStack {
+                        if isStored {
+                            Image(systemName: "clock")
+                                .foregroundColor(.gray)
+                        }
+                        MessageStatusChatIcon(status: .init(rawValue: message.status) ?? .unknown)
+                            .foregroundColor(.accentColor)
+                    }
+                    .padding(.trailing)
                 }
             }
             
